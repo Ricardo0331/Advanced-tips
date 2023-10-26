@@ -1,18 +1,26 @@
 const router = require("express").Router();
 const controller = require("./notes.controller");
 
+function methodNotAllowed(req, res, next) {
+  next({
+    status: 405,
+    message: `${req.method} not allowed for ${req.originalUrl}`,
+  });
+}
+
+
 router
   .route("/:noteId")
   .get(controller.read)
   .put(controller.update)
   .delete(controller.delete)
-  .all(controller.methodNotAllowed);
+  .all(methodNotAllowed);
 
 router
   .route("/")
   .get(controller.list)
   .post(controller.create)
-  .all(controller.methodNotAllowed);
+  .all(methodNotAllowed);
 
 router
   .route("/:noteId/ratings")
