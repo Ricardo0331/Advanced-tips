@@ -25,21 +25,21 @@ router
 router
   .route("/:noteId/ratings")
   .get(controller.listNoteRatings)
-  .all(controller.methodNotAllowed);
+  .all(methodNotAllowed);
 
 router
   .route("/:noteId/ratings/:ratingId")
   .get(controller.readNoteRating)
-  .all(controller.methodNotAllowed);
+  .all(methodNotAllowed);
 
 router
   .route("/ratings")
   .get(controller.listAllRatings)
-  .all(controller.methodNotAllowed);
+  .all(methodNotAllowed);
 
 router
   .route("/ratings/:ratingId")
   .get(controller.readSpecificRating)
-  .all(controller.methodNotAllowed);
+  .all(methodNotAllowed);
 
 module.exports = router;
